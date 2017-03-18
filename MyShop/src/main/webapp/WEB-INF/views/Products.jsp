@@ -97,8 +97,28 @@
 var obj = ${lists};
 angular.module('app', []);
 
-angular.module('app').controller('MyCtrl', function ($scope){
+angular.module('app').controller('MyCtrl', function ($scope,$http){
 	$scope.productList = obj;
+	
+    $scope.add2cart = function(item){
+  	  $http(
+      		  {
+      			  method: "GET", 
+      			  url: "/MyShop/addToCart",
+      			  params: {
+      			        pro : item
+      			    }
+      			}
+      		)
+        .success(function(data){
+      	  console.log("Insertion Successful" + data); 
+        })
+        .error(function(data){
+      	  $scope.message="You have successfully Inserted 1 new product!";
+        });
+  	
+  	  
+    }
 
 });
 
@@ -148,7 +168,7 @@ angular.module('app').controller('MyCtrl', function ($scope){
 											<div class="caption">
 												<a href="productDetail?fetchid={{product.productID}}"><h4 class="group inner list-group-item-heading">
 													{{product.productName}}
-													<a href="#">
+													<a href="productDetail?fetchid={{product.productID}}">
 														<div class="pull-right" style="text-decoration: none; color: black;">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</div>
@@ -164,7 +184,7 @@ angular.module('app').controller('MyCtrl', function ($scope){
 														</div>
 														<div class="col-xs-12 col-md-6">
 
-															<a class="btn btn-primary" href="#">
+															<a class="btn btn-primary" href="#" ng-click="add2cart(product)">
 																<i class="fa  fa-cart-arrow-down" style="font-size:23px;"aria-hidden="true"></i>
 																&nbsp; Add to Cart</a>
 

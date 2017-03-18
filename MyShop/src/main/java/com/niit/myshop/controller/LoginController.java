@@ -1,5 +1,7 @@
 package com.niit.myshop.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.niit.myshop.dao.UserDAO;
+import com.niit.myshop.model.CartItem;
 import com.niit.myshop.model.User;
 
 @Controller
@@ -31,6 +34,7 @@ public class LoginController {
 			//model.addAttribute("Name", user.getFirstName());
 			session.setAttribute("LoggedIn", true);
 			session.setAttribute("UserBean", fetchedUser);
+			session.setAttribute("CartItems", new ArrayList<CartItem>());
 			//model.addAttribute("UserBean", user);
 			return "Welcome";
 		}
