@@ -51,5 +51,17 @@ public class CartDAOImpl implements CartDAO {
 		System.out.println("Item inserted");	
 
 	}
+	
+	public void removeProduct(int p_id) {
+		Session s=  sessionFactory.openSession();
+		Transaction tx = s.beginTransaction();
+		CartItem product ;
+		product = (CartItem)s.load(CartItem .class,p_id);
+		s.delete(product);
+		tx.commit();
+		s.close();
+		System.out.println("Product Deleted");
+		
+	}
 
 }

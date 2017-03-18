@@ -59,6 +59,26 @@ angular.module('app').controller('MyCtrl2', function ($scope ,$http){
         }
         return total;
     }
+    $scope.removeObj = function(pid){
+  	  $http(
+      		  {
+      			  method: "GET", 
+      			  url: "/MyShop/removeItem",
+      			  params: {
+      			        proID : pid
+      			    }
+      			}
+      		)
+        .success(function(data){
+      	  console.log("Deletion Successful " + data); 
+        })
+        .error(function(data){
+      	  $scope.message="You have successfully DELETED 1 old product!";
+        });
+  		
+  	  	$scope.pull();
+  	  
+    }
 
 });
 
@@ -167,7 +187,7 @@ angular.module('app').controller('MyCtrl2', function ($scope ,$http){
 						</tr>
 						<tr ng-repeat="cartItem in itemList">
 
-							<td>*</td>
+							<td>{{$index +1}}</td>
 
 							<td>{{cartItem.p_name}}</td>
 
@@ -177,7 +197,7 @@ angular.module('app').controller('MyCtrl2', function ($scope ,$http){
 								 style="width: 70px;" min="1" max="20" ng-model="cartItem.quantity"/></td>
 
 							<td>{{cartItem.p_price * cartItem.quantity}}</td>
-							<td><a href="#" class="btn btn-danger btn-sm">remove</a></td>
+							<td><a href="#" class="btn btn-danger btn-sm" ng-click="removeObj(cartItem.KartItemid)">remove</a></td>
 						</tr>
 						<tr class="active lead">
 

@@ -109,5 +109,16 @@ public class ProductController {
 		return ("You have successfully ADDED 1 new product!"); 
 
 	}
+	
+	@RequestMapping(value="/removeItem", method=RequestMethod.GET)
+	public @ResponseBody String removeProductHandler( @RequestParam("proID") int p_id,Model model) {
+		
+		System.out.println("Product Deletion Initiated");
+		cdao.removeProduct(p_id);
+		System.out.println("Product Deletion Successful!!!");
+		return ("You have successfully DELETED 1 old product!");
+	 
+
+	}
 
 }
