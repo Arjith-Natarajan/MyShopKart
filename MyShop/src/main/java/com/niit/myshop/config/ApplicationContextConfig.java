@@ -15,6 +15,7 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.myshop.dao.UserDAO;
+import com.niit.myshop.dao.impl.CartDAOImpl;
 import com.niit.myshop.dao.impl.ProductDAOImpl;
 import com.niit.myshop.dao.impl.UserDAOImpl;
 
@@ -77,6 +78,12 @@ public class ApplicationContextConfig {
 	@Bean(name = "productBean")
 	public ProductDAOImpl getProductDao(SessionFactory sessionFactory) {
 	    return new ProductDAOImpl(sessionFactory);
+	}
+	
+	@Autowired
+	@Bean(name = "cartBean")
+	public CartDAOImpl getCartDao(SessionFactory sessionFactory) {
+	    return new CartDAOImpl(sessionFactory);
 	}
 
 }

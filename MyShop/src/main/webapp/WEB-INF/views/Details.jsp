@@ -45,22 +45,42 @@
 	}
 
 </style>
-<script type="text/javascript">
-var obj = ${product_item};
-angular.module('app', []);
 
-angular.module('app').controller('MyCtrl', function ($scope){
-	$scope.product= obj;
+</head>
+
+<body ng-app='app'>
+<%@ include file="Header.jsp" %>
+<script type="text/javascript">
+var obk = ${product_item};
+
+angular.module('app').controller('MyC', function ($scope,$http){
+	$scope.product= obk;
+	
+	  $scope.add2cart = function(item){
+	  	  $http(
+	      		  {
+	      			  method: "GET", 
+	      			  url: "/MyShop/addToCart",
+	      			  params: {
+	      			        pro : item
+	      			    }
+	      			}
+	      		)
+	        .success(function(data){
+	      	  console.log("Insertion Successful" + data); 
+	        })
+	        .error(function(data){
+	      	  $scope.message="You have successfully Inserted 1 new product!";
+	        });
+	  	
+	  	  
+	    }
 
 });
 
 
 </script>
-</head>
-
-<body ng-app='app'>
-<%@ include file="Header.jsp" %>
-	<div class="container" style="margin-top:80px;" ng-controller="MyCtrl">
+	<div class="container" style="margin-top:80px;" ng-controller="MyC">
    <div class="col-md-6 panel panel-row-border">
    
     <div class="row1">
@@ -129,7 +149,7 @@ alt="" class="img-thumbnail img-responsive" /></a>
 </div>
 <div class="row text-center">
 <a href="#" class="btn btn-success btn-lg  col-md-offset-1 col-md-6">Buy Now</a>
-	<a href="#" class="btn btn-primary btn-warning col-md-offset-1 col-md-3">Add to cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
+	<a href="#" ng-click="add2cart(product)" class="btn btn-primary btn-warning col-md-offset-1 col-md-3">Add to cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
 </div>
    </div>
    

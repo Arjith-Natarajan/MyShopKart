@@ -1,4 +1,4 @@
-	<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -93,9 +93,13 @@
 }
 
 		</style>
+
+</head>
+<body ng-app='app'>
+	<%@ include file="Header.jsp" %>
 <script type="text/javascript">
 var obj = ${lists};
-angular.module('app', []);
+// angular.module('app', []);
 
 angular.module('app').controller('MyCtrl', function ($scope,$http){
 	$scope.productList = obj;
@@ -124,10 +128,6 @@ angular.module('app').controller('MyCtrl', function ($scope,$http){
 
 
 </script>
-</head>
-<body ng-app='app'>
-	<%@ include file="Header.jsp" %>
-
 <div class="container-fluid" style="margin-top:50px;">
 	<div class="row"></div>
 

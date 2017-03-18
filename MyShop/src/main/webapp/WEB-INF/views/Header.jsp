@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
-<html ng-app="app" >
+<html ng-app='app'>
 <head>
 <link rel="shortcut icon" href="bootstrap/img/favicon.ico"
 	type="image/x-icon">
@@ -26,7 +26,7 @@
 
 </head>
 
-<body   ng-controller="MyCtrl2">
+<body ng-controller="MyCtrl2">
 <script type="text/javascript">
 
 angular.module('app', []);
@@ -51,6 +51,14 @@ angular.module('app').controller('MyCtrl2', function ($scope ,$http){
         });
     }
     $scope.pull();
+    $scope.getTotal = function(){
+        var total = 0;
+        for(var i = 0; i < $scope.itemList.length; i++){
+            var product = $scope.itemList[i];
+            total += (product.p_price * product.quantity);
+        }
+        return total;
+    }
 
 });
 
@@ -148,7 +156,7 @@ angular.module('app').controller('MyCtrl2', function ($scope ,$http){
 
 							<th>Item Name</th>
 
-							<th>Unit Price (USD)</th>
+							<th>Unit Price (INR)</th>
 
 							<th>Quantity</th>
 
@@ -161,21 +169,21 @@ angular.module('app').controller('MyCtrl2', function ($scope ,$http){
 
 							<td>*</td>
 
-							<td>{{cartItem.item.productName}}</td>
+							<td>{{cartItem.p_name}}</td>
 
-							<td>{{cartItem.item.price}}</td>
+							<td>{{cartItem.p_price}}</td>
 
 							<td><input type="number" class="form-control" value="1"
 								 style="width: 70px;" min="1" max="20" ng-model="cartItem.quantity"/></td>
 
-							<td>{{cartItem.item.price * cartItem.quantity}}</td>
+							<td>{{cartItem.p_price * cartItem.quantity}}</td>
 							<td><a href="#" class="btn btn-danger btn-sm">remove</a></td>
 						</tr>
 						<tr class="active lead">
 
 							<td colspan="4">Total</td>
 
-							<td>$1,096</td>
+							<td> ₹ {{ getTotal() }}</td>
 
 							<td><a href="#" class="btn btn-danger btn-sm">clear all</a>
 

@@ -20,6 +20,7 @@ import com.niit.myshop.dao.CartDAO;
 import com.niit.myshop.dao.ProductDAO;
 import com.niit.myshop.model.CartItem;
 import com.niit.myshop.model.Product;
+import com.niit.myshop.model.User;
 
 @Controller
 public class ProductController {
@@ -27,7 +28,8 @@ public class ProductController {
 	@Autowired
 	private ProductDAO pdao;
 	
-//	private CartDAO cdao;
+	@Autowired
+	private CartDAO cdao;
 	
 	@RequestMapping(value="/Products" ,method = RequestMethod.GET)
 	public String displayProducts (HttpServletRequest request, ModelMap model) {
@@ -65,14 +67,18 @@ public class ProductController {
 	public  @ResponseBody String noticeProductRequest(HttpSession session,Model model) {
 		
 		System.out.println("Admin Controller hit");
-//		List<CartItem> list = cdao.getCartItems();
-		List<CartItem> clist = new ArrayList<CartItem>();
-		Product p1 = new Product("P-ILCA-99M2","cam", "Sony DSLR","α99 II provides a back-illuminated 42.4MP 35 mm full-frame CMOS image sensor, Hybrid Phase Detection AF system, up to 12fps high-speed continuous shooting, 5-axis optical image stabilisation and advanced 4K movie recording.", 4250,true);
-		CartItem citem = new CartItem(2,2*p1.getPrice(),p1);
-		clist.add(citem);
+		User x= (User) session.getAttribute("UserBean");
+		List<CartItem> list;
+		try{
+		 list = cdao.getCartItems(x.getUserId());
+		}
+		catch(NullPointerException e){return null;}
+//		Product p1 = new Product("P-ILCA-99M2","cam", "Sony DSLR","α99 II provides a back-illuminated 42.4MP 35 mm full-frame CMOS image sensor, Hybrid Phase Detection AF system, up to 12fps high-speed continuous shooting, 5-axis optical image stabilisation and advanced 4K movie recording.", 4250,true);
+//		User x= (User) session.getAttribute("UserBean");
+//		CartItem citem = new CartItem(2,p1.getProductName(),p1.getPrice(),x.getUserId());
 		Gson gson = new Gson();
-		String json;
-		json = gson.toJson(clist);
+		String json=null;
+		json = gson.toJson(list);
 		System.out.println(json);
 	    return json;
 
@@ -94,11 +100,10 @@ public class ProductController {
 		System.out.println("Cart Insertion Initiated");
 		Gson gson = new Gson();
 		Product x =gson.fromJson(p, Product.class);
-		CartItem citem = new CartItem(1,1*x.getPrice(),x);
+		User y= (User) session.getAttribute("UserBean");
+		CartItem citem = new CartItem(1,x.getProductName(),x.getPrice(),y.getUserId());
 		System.out.println("#########"+citem);
-		List<CartItem> v1 =(List<CartItem>) session.getAttribute("CartItems");
-		v1.add(citem);
-		session.setAttribute("CartItems", v1);
+		cdao.addProduct(citem);
 //		cdao.addProduct(citem);
 		System.out.println("Product Insertion Successful!!!");
 		return ("You have successfully ADDED 1 new product!"); 
