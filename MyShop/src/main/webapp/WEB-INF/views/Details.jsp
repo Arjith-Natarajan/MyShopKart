@@ -18,6 +18,7 @@
 <link href="bootstrap/fonts/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet">
 <script type="text/javascript" src="bootstrap/js/jquery-3.0.0.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/angular.min.js"></script>
 <style>
 
 	#ratings{
@@ -44,11 +45,22 @@
 	}
 
 </style>
+<script type="text/javascript">
+var obj = ${product_item};
+angular.module('app', []);
+
+angular.module('app').controller('MyCtrl', function ($scope){
+	$scope.product= obj;
+
+});
+
+
+</script>
 </head>
 
-<body>
+<body ng-app='app'>
 <%@ include file="Header.jsp" %>
-	<div class="container" style="margin-top:80px;">
+	<div class="container" style="margin-top:80px;" ng-controller="MyCtrl">
    <div class="col-md-6 panel panel-row-border">
    
     <div class="row1">
@@ -89,13 +101,13 @@ alt="" class="img-thumbnail img-responsive" /></a>
     </div>
    </div>
    <div class="col-md-6 panel">
-    <h5><a>Kodak Astro Zoom AZ521-BK Digital Camera with 52x Optical Image Stabilized Zoom</a></h5> 
+    <h5><a>{{product.productName}}</a></h5> 
 
     
     <div class="row1" style="padding-left:">  
     	<div class="pull-left">
-    		<b>By Kodak</b>	<br>
-    		<h4><span class="text-info" >$24.99</span></h4>
+    		<b>{{product.category}}</b>	<br>
+    		<h4><span class="text-info" >₹​ {{product.price}}</span></h4>
     	</div>
     	    <div class="pull-right col-md-7 " style="padding-top:0px;" align="right">
     
@@ -113,10 +125,7 @@ alt="" class="img-thumbnail img-responsive" /></a>
     </div>
 <div class="row">
 
-<p class="col-md-offset-1 col-md-11">Lorem ipsum dolor sit amet, consectetur adipisicing
-elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-laboris nisi ut aliquip ex ea commodo consequat.</p>
+<p class="col-md-offset-1 col-md-11">{{product.productDesc}}</p>
 </div>
 <div class="row text-center">
 <a href="#" class="btn btn-success btn-lg  col-md-offset-1 col-md-6">Buy Now</a>

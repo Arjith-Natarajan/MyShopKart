@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.niit.myshop.dao.ProductDAO;
 import com.niit.myshop.model.Product;
+import com.niit.myshop.model.User;
 
 public class ProductDAOImpl implements ProductDAO {
 	
@@ -78,6 +79,22 @@ public class ProductDAOImpl implements ProductDAO {
 		tx.commit();
 		s.close();
 		System.out.println("Product Deleted");
+		
+	}
+
+	public Product getProduct(String p_id) {
+		Session s=  sessionFactory.openSession();
+		Transaction tx = s.beginTransaction();
+		
+		Criteria criteria = s.createCriteria(Product.class);
+		Product fproduct= (Product) criteria.add(Restrictions.eq("productID", p_id)).uniqueResult();
+		tx.commit();
+		s.close();
+		System.out.println("Product fetched by id");	
+		if(fproduct!=null) {return fproduct;}
+		return null;
+		
+		
 		
 	}
 

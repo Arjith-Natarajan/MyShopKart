@@ -40,10 +40,7 @@ public class MainController {
 
 		return "About";
 	}
-	@RequestMapping("/productDetail")
-	public String getDetails() {
-		return "Details";
-	}
+
 	@RequestMapping(value="/admin**", method = RequestMethod.GET)
 	public String goToAdmin(Model model) {
 		model.addAttribute("product", new Product());

@@ -146,7 +146,7 @@ angular.module('app').controller('MyCtrl', function ($scope){
 										<div class="thumbnail">
 											<img class="group list-group-image" src="bootstrap/img/placehold400x250.png" alt=""/>
 											<div class="caption">
-												<h4 class="group inner list-group-item-heading">
+												<a href="productDetail?fetchid={{product.productID}}"><h4 class="group inner list-group-item-heading">
 													{{product.productName}}
 													<a href="#">
 														<div class="pull-right" style="text-decoration: none; color: black;">
@@ -156,7 +156,7 @@ angular.module('app').controller('MyCtrl', function ($scope){
 												</h4>
 												<p class="group inner list-group-item-text desc">
 													{{product.productDesc}}</p>
-												<br>
+												<br></a>
 													<div class="row">
 														<div class="col-xs-12 col-md-6">
 															<p class="lead" style="font-size:24px; font-weight: 400;">

@@ -52,5 +52,15 @@ public class ProductController {
 		return "Products";
 		
 	}
+	
+	@RequestMapping(value="/productDetail" ,method = RequestMethod.GET)
+	public String getDetails(HttpServletRequest request, ModelMap model) {
+		
+		String id = request.getParameter("fetchid");
+		Gson gson = new Gson();
+		String json = gson.toJson(pdao.getProduct(id));
+		model.addAttribute("product_item", json);
+		return "Details";
+	}
 
 }
