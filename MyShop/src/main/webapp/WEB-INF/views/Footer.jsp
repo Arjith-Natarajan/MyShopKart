@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -67,64 +68,6 @@
 
 		<footer class="footer navbar-default">
 			<div class="container">
-				<div class="row bottom-rule">
-					<div class="col-sm-4 footer-section">
-						<strong>Connect with MyShop Store</strong>
-						<p>Email promotions, news, and information</p>
-						<form class="form-inline">
-							<div class="form-group">
-								<label class="sr-only" for="inputEmail">Email</label>
-								<input type="email" class="form-control" id="inputEmail" placeholder="address@example.com"></div>
-								<button type="submit" class="btn btn-default">Subscribe</button>
-							</form>
-						</div>
-
-						<div class="col-sm-4 footer-section">
-							<ul class="list-inline">
-								<li class="text-uppercase">Customer Service:</li>
-								<li>
-									<a href="#">Returns</a>
-								</li>
-								<li>
-									<a href="#">Privacy Policy</a>
-								</li>
-								<li>
-									<a href="#">Our Guarantee</a>
-								</li>
-								<li>
-									<a href="#">Shipping</a>
-								</li>
-								<li>
-									<a href="#">Customer Care</a>
-								</li>
-							</ul>
-							<ul class="list-inline">
-								<li class="text-uppercase">Social Media &amp; Articles:</li>
-								<li>
-									<a href="#">Instagram</a>
-								</li>
-								<li>
-									<a href="#">Twitter</a>
-								</li>
-								<li>
-									<a href="#">Facebook</a>
-								</li>
-								
-							</ul>
-						</div>
-
-						<div class="col-sm-4">
-							<address>
-								<strong>MyShop Store</strong>
-								  
-								<br/>
-								No.17, 3rd foor, Surya Varsh Buildling,<br/>
-								Uthamar Gandhi Salai, Wallace Garden 2nd Street,<br/>
-								Nungambakkam, Chennai, Tamil Nadu 600034<br/>
-								<a href="Contact">Contact Us</a>
-							</address>
-						</div>
-					</div>
 					<div class="row bottom-rule">
     <div class="col-sm-12">
         <nav class="navbar navbar-default navbar-footer">
